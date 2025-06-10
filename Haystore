@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Foto ke Background Haystore</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff7ec;
+      text-align: center;
+      padding: 20px;
+    }
+    #background {
+      background-image: url('background.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100%;
+      max-width: 400px;
+      height: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+    #preview {
+      position: absolute;
+      top: 200px; /* Atur sesuai kebutuhan */
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 200px;
+      max-height: 200px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    input[type=file] {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Upload Foto Kamu dengan Background Haystore</h1>
+  <input type="file" id="upload" accept="image/*">
+  <div id="background">
+    <img id="preview" src="" alt="Preview Foto">
+  </div>  <script>
+    const upload = document.getElementById('upload');
+    const preview = document.getElementById('preview');
+
+    upload.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+  </script></body>
+</html>
